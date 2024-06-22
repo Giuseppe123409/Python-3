@@ -1,0 +1,22 @@
+from flask import Flask
+import random
+
+app = Flask(__name__)
+lista_fatti =  ["Conte al Napoli",
+                "Di Lorenzo alla Juve",
+                "Buongiorno al Napoli"]
+moneta_random =  ["5", "10", "20", "30"]
+
+@app.route("/")
+def index():
+    return f'<h1>Benvenuti in fatti casuali</h1><a href="/fatto_casuale">Clicca qui</a><a href="/moneta">Lancio di una moneta</a>'
+
+@app.route("/fatto_casuale")
+def facts():
+    return f'<h2>{random.choice(lista_fatti)}</h2><a href="/fatto_casuale">Prova di nuovo</a>'
+
+@app.route("/moneta")
+def throw():
+    return f'<h2>{random.choice(moneta_random)}</h2><a href="/moneta">Rilancia</a>'
+
+app.run(debug=True)
